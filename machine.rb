@@ -28,18 +28,18 @@ class Machine
 
   def buy(product)
     product_index = product
-    if @credit >= @product[product_index].price && @product[product_index].quantity > 0
-      puts "Please pick your item!"
-      @product[product_index].quantity -= 1
-      extra_credit = @credit - @product[product_index].price
-      puts "Please pick your extra credit of $ #{extra_credit} !"
-      @credit = 0
-    end
     if @credit < @product[product_index].price
       puts "You do not have enough credit!"
     end
     if @product[product_index].quantity < 1
       puts "Item sold out. Please pick your credit of $ #{@credit} !"
+      @credit = 0
+    end
+    if @credit >= @product[product_index].price && @product[product_index].quantity > 0
+      puts "Please pick your item!"
+      @product[product_index].quantity -= 1
+      extra_credit = @credit - @product[product_index].price
+      puts "Please pick your extra credit of $ #{extra_credit} !"
       @credit = 0
     end
   end
